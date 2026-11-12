@@ -12,6 +12,8 @@
             --primary: #0284c7;
             --primary-dark: #0369a1;
             --accent: #10b981;
+            --sos-bg: #dc2626;
+            --sos-hover: #b91c1c;
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --text-main: #0f172a;
@@ -24,6 +26,8 @@
             --primary: #38bdf8;
             --primary-dark: #0284c7;
             --accent: #34d399;
+            --sos-bg: #b91c1c;
+            --sos-hover: #991b1b;
             --bg-body: #0f172a;
             --bg-card: #1e293b;
             --text-main: #f8fafc;
@@ -50,6 +54,52 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* ВЕРХНИЙ БАННЕР SOS-ID */
+        .sos-banner {
+            background: linear-gradient(90deg, var(--sos-bg) 0%, #991b1b 100%);
+            color: #ffffff;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .sos-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .sos-badge {
+            background: #ffffff;
+            color: #dc2626;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .sos-btn {
+            background: #ffffff;
+            color: #b91c1c !important;
+            padding: 5px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.82rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .sos-btn:hover {
+            transform: scale(1.04);
+            background: #fef2f2;
         }
 
         /* ШАПКА */
@@ -143,7 +193,7 @@
 
         /* HERO СЕКЦІЯ */
         .hero {
-            padding: 70px 0 50px;
+            padding: 60px 0 45px;
             text-align: center;
         }
 
@@ -219,7 +269,7 @@
             color: #ffffff;
             border-radius: 22px;
             padding: 40px;
-            margin: 50px 0;
+            margin: 45px 0;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
@@ -326,7 +376,7 @@
             transform: rotate(180deg);
         }
 
-        /* БЕЗПЕКА ТА КОНФІДЕНЦІЙНІСТЬ */
+        /* БЕЗПЕКА ТА ВІДМОВА ВІД ВІДПОВІДАЛЬНОСТІ */
         .security-section {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -346,6 +396,18 @@
             max-width: 650px;
             margin: 0 auto;
             font-size: 0.95rem;
+        }
+
+        .disclaimer-box {
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ПІДВАЛ */
@@ -368,10 +430,20 @@
             .hero p { font-size: 1rem; }
             .stats-box { grid-template-columns: 1fr; gap: 25px; padding: 30px; }
             .btn-launch-header { display: none; }
+            .sos-inner { flex-direction: column; gap: 6px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- ВЕРХНІЙ БАНЕР SOS-ID -->
+    <div class="sos-banner">
+        <div class="container sos-inner">
+            <span class="sos-badge">🆘 SOS-ID</span>
+            <span id="sos-text">Екстрений медичний профіль при діабеті — врятує життя в критичній ситуації</span>
+            <a href="https://sos-id.online" target="_blank" class="sos-btn" id="sos-btn">Створити SOS-картку ➔</a>
+        </div>
+    </div>
 
     <!-- ШАПКА -->
     <header>
@@ -494,15 +566,16 @@
             </div>
         </section>
 
-       <!-- БЕЗПЕКА ТА ВІДМОВА ВІД ВІДПОВІДАЛЬНОСТІ -->
+        <!-- БЕЗПЕКА ТА ВІДМОВА ВІД ВІДПОВІДАЛЬНОСТІ -->
         <section class="security-section">
             <h2 id="sec-title">🔒 Безпека та конфіденційність</h2>
             <p id="sec-desc">Ваші медичні дані належать виключно вам. Ми використовуємо сучасні стандарти шифрування та захисту з'єднання, щоб особиста інформація залишалася приватною.</p>
             
-            <div style="margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 0.84rem; color: var(--text-muted); line-height: 1.5;" id="sec-disclaimer">
+            <div class="disclaimer-box" id="sec-disclaimer">
                 ⚠️ <strong>Медичне застереження:</strong> Онлайн-сервіс e-Diabetes створений виключно для особистого моніторингу та інформаційних цілей і не є медичною консультацією чи послугою. Дані сервісу не замінюють професійну медичну допомогу, встановлення діагнозу або огляд кваліфікованого лікаря. Завжди консультуйтеся з вашим ендокринологом або сімейним лікарем перед зміною дозувань інсуліну, медикаментів, плану харчування чи терапії.
             </div>
         </section>
+
     </main>
 
     <!-- ПІДВАЛ -->
@@ -517,9 +590,9 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // РОЗКРИТТЯ / ЗГОРТАННЯ КАРТКИ
         let currentLang = 'uk';
 
+        // РОЗКРИТТЯ / ЗГОРТАННЯ КАРТКИ
         function toggleCard(card) {
             card.classList.toggle('open');
             const btnLabel = card.querySelector('.btn-label');
@@ -545,6 +618,8 @@
         // ПЕРЕКЛАДИ (UA, DE, EN)
         const translations = {
             uk: {
+                sosText: "Екстрений медичний профіль при діабеті — врятує життя в критичній ситуації",
+                sosBtn: "Створити SOS-картку ➔",
                 headerBtn: "Увійти ➔",
                 heroBadge: "✨ Зручний онлайн-помічник 24/7",
                 heroTitle: "Розумний щоденник для контролю діабету та самопочуття",
@@ -570,9 +645,12 @@
                 collapseBtn: "Згорнути",
                 secTitle: "🔒 Безпека та конфіденційність",
                 secDesc: "Ваші медичні дані належать виключно вам. Ми використовуємо сучасні стандарти шифрування та захисту з'єднання, щоб особиста інформація залишалася приватною.",
-                footerCopy: "© 2026 e-Diabetes — Проект створено з турботою про здоров'я кожного."
+                secDisclaimer: "⚠️ <strong>Медичне застереження:</strong> Онлайн-сервіс e-Diabetes створений виключно для особистого моніторингу та інформаційних цілей і не є медичною консультацією чи послугою. Дані сервісу не замінюють професійну медичну допомогу, встановлення діагнозу або огляд кваліфікованого лікаря. Завжди консультуйтеся з вашим ендокринологом або сімейним лікарем перед зміною дозувань інсуліну, медикаментів, плану харчування чи терапії.",
+                footerCopy: "© 2026 <strong>e-Diabetes</strong> — Проект створено з турботою про здоров'я кожного."
             },
             de: {
+                sosText: "Medizinisches Notfallprofil für Diabetiker — rettet Leben im Ernstfall",
+                sosBtn: "SOS-ID erstellen ➔",
                 headerBtn: "Anmelden ➔",
                 heroBadge: "✨ Bequemer Online-Begleiter rund um die Uhr",
                 heroTitle: "Intelligentes Tagebuch für Diabetes- und Gesundheitskontrolle",
@@ -598,9 +676,12 @@
                 collapseBtn: "Schließen",
                 secTitle: "🔒 Sicherheit & Privatsphäre",
                 secDesc: "Ihre Gesundheitsdaten gehören nur Ihnen. Wir setzen moderne Verschlüsselungsstandards ein.",
-                footerCopy: "© 2026 e-Diabetes — Mit Fürsorge für die Gesundheit aller entwickelt."
+                secDisclaimer: "⚠️ <strong>Medizinischer Haftungsausschluss:</strong> Der Online-Dienst e-Diabetes dient ausschließlich der persönlichen Dokumentation und Informationszwecken und stellt keine medizinische Beratung oder Leistung dar. Die Nutzung ersetzt keinesfalls den Arztbesuch, eine Diagnose oder Behandlung. Wenden Sie sich bei Therapieentscheidungen, Dosierungsänderungen von Insulin oder Medikamenten stets an Ihren behandelnden Arzt.",
+                footerCopy: "© 2026 <strong>e-Diabetes</strong> — Mit Fürsorge für die Gesundheit aller entwickelt."
             },
             en: {
+                sosText: "Emergency medical ID profile for diabetes — life-saving info in critical moments",
+                sosBtn: "Create SOS-ID ➔",
                 headerBtn: "Log In ➔",
                 heroBadge: "✨ Convenient Online Assistant 24/7",
                 heroTitle: "Smart Diary for Diabetes & Health Management",
@@ -626,7 +707,8 @@
                 collapseBtn: "Collapse",
                 secTitle: "🔒 Security & Privacy",
                 secDesc: "Your health records belong solely to you. We apply modern encryption standards to ensure total privacy.",
-                footerCopy: "© 2026 e-Diabetes — Developed with care for everyone's health."
+                secDisclaimer: "⚠️ <strong>Medical Disclaimer:</strong> The e-Diabetes online service is intended strictly for personal tracking and informational purposes only and does not constitute medical advice or care. It is not a substitute for professional diagnosis, medical consultation, or treatment by a licensed physician. Always seek the advice of your doctor before adjusting insulin doses, medication, diet, or overall treatment plans.",
+                footerCopy: "© 2026 <strong>e-Diabetes</strong> — Developed with care for everyone's health."
             }
         };
 
@@ -635,6 +717,8 @@
             const t = translations[lang];
             if (!t) return;
 
+            document.getElementById('sos-text').innerText = t.sosText;
+            document.getElementById('sos-btn').innerText = t.sosBtn;
             document.getElementById('header-btn').innerText = t.headerBtn;
             document.getElementById('hero-badge').innerText = t.heroBadge;
             document.getElementById('hero-title').innerText = t.heroTitle;
@@ -662,13 +746,14 @@
             document.getElementById('f4-desc').innerText = t.f4Desc;
             document.getElementById('f4-extra').innerText = t.f4Extra;
 
-            document.querySelectorAll('.feature-card').forEach((card, i) => {
+            document.querySelectorAll('.feature-card').forEach((card) => {
                 const btnLabel = card.querySelector('.btn-label');
                 btnLabel.innerText = card.classList.contains('open') ? t.collapseBtn : t.expandBtn;
             });
 
             document.getElementById('sec-title').innerText = t.secTitle;
             document.getElementById('sec-desc').innerText = t.secDesc;
+            document.getElementById('sec-disclaimer').innerHTML = t.secDisclaimer;
             document.getElementById('footer-copy').innerHTML = t.footerCopy;
 
             document.getElementById('btn-uk').className = lang === 'uk' ? 'lang-btn active' : 'lang-btn';
